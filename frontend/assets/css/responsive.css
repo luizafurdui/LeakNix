@@ -1,0 +1,522 @@
+/*
+======================
+For - Big - Screen
+======================
+*/
+
+
+@media screen and (min-width: 1900px) {
+
+
+
+}
+
+
+/*
+=======================
+For - Dextop - Screen
+=======================
+*/
+
+@media screen and (min-width: 1400px) {
+
+	
+
+
+
+	
+
+
+}
+
+
+/*
+====================================
+For -  Leptop/Mini Desktop - Screen
+====================================
+*/
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    
+    
+	
+}
+
+
+/*
+=============================
+For - Mini - Leptop - Screen
+=============================
+*/
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+
+    /* 
+    -----------------
+    check-leaks-area
+    -----------------
+    */
+
+    .check-leaks-item {
+        padding: 16px 12px;
+    }
+
+    .check-leaks-item p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+
+
+    /* 
+    ----------------
+    pricing-area
+    ----------------
+    */
+
+    .pricing-header-bg {
+        padding: 16px 22px;
+    }
+
+    .pricing-header-bg h4 {
+        font-size: 13px;
+        padding: 15px 0 8px;
+    }
+
+    .pricing-header-bg p {
+        font-size: 12px;
+    }
+
+    .pricing-header-bg h3 {
+        font-size: 25px;
+        margin: 14px 0 0;
+    }
+
+    .pricing-card-footer {
+        padding: 16px 16px;
+    }
+
+
+	
+}
+
+
+
+/*
+=======================
+For - Ipad - Screen
+=======================
+*/
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+
+    .py-80 {
+        padding: 40px 0;
+    }
+
+    .header-banner-bg {
+        overflow-x: hidden;
+        overflow-y: clip;
+    }
+
+
+    /* 
+    -----------------
+    check-leaks-area
+    -----------------
+    */
+
+    .check-leaks-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+    }
+
+
+
+
+    /* 
+    -------------------
+    leakNix-works-area
+    -------------------
+    */
+
+    .leakNix-works-area {
+        padding: 40px 0;
+    }
+
+    .leakNix-works-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
+
+    /* 
+    ------------------
+    compare-area
+    ------------------
+    */
+
+    #tabs {
+        padding-bottom: 45%;
+    }
+
+    #tabs .tabContent {
+        width: 59%;
+        left: 42%;
+        top: 0;
+    }
+
+
+
+
+    /* 
+    ----------------
+    pricing-area
+    ----------------
+    */
+
+    .pricing-ellipse-image {
+        width: 100%;
+    }
+
+    .pricing-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pricing-header-bg {
+        padding: 16px 22px;
+    }
+
+
+
+    /* 
+    ----------------------
+    precheck-scan-box.html
+    ----------------------
+    */
+
+    .precheck-scan-body .banner-texture-image,
+    .precheck-scan-body .banner-ellipse-image {
+        width: 100%;
+    }
+
+    .precheck-scan-body .banner-ellipse-image {
+        top: 25%;
+        bottom: initial;
+    }
+
+    .precheck-scan-body .banner-texture-image {
+        top: 25%;
+        bottom: initial;
+    }
+
+
+}
+
+
+
+
+
+
+/*
+=======================
+For - Mobile - Screen
+=======================
+*/
+
+
+@media screen and (max-width: 767px) {
+
+    h1 {
+        font-size: 35px;
+        line-height: 47px;
+    }
+
+    h2 {
+        font-size: 25px;
+        margin-bottom: 30px !important;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .p-lg, .lg-text {
+        font-size: 16px;
+    }
+
+    .p-sm {
+        font-size: 13px;
+    }
+
+    .py-80 {
+        padding: 40px 0;
+    }
+
+
+
+    .header-banner-bg {
+        overflow-x: hidden;
+        overflow-y: clip;
+    }
+
+    .header-area2 {
+        padding: 25px 0 0;
+    }
+
+    .precheck-area {
+        padding: 150px 20px 200px;
+    }
+
+    
+
+    /* 
+    ----------------
+    banner-area
+    ----------------
+    */
+
+    .banner-area {
+        padding: 75px 0 75px;
+    }
+
+    .banner-ellipse-image {
+        bottom: -22%;
+    }
+
+    .check-btn2 {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+
+
+    /* 
+    -----------------
+    check-leaks-area
+    -----------------
+    */
+
+    .check-leaks-area {
+        padding: 40px 0;
+    }
+
+    .check-leaks-grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 16px;
+        row-gap: 35px;
+    }
+
+
+
+    /* 
+    -------------------
+    leakNix-works-area
+    -------------------
+    */
+
+    .leakNix-works-area {
+        padding: 40px 0;
+    }
+
+    .works-ellipse {
+        width: 100%;
+    }
+
+    .leakNix-works-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .leakNix-grid-bg {
+        flex-wrap: wrap;
+    }
+
+    .leakNix-grid-bg .leakNix-image img {
+        width: 60px;
+    }
+
+
+
+
+    /* 
+    --------------------
+    compare-area
+    --------------------
+    */
+
+    #tabs .tabContent {
+        position: initial;
+        width: 100%;
+    }
+
+    .features-div h4, .features-div ul li {
+        padding: 10px 20px;
+    }
+
+    .features-div h4, .features-div ul li p {
+        font-size: 14px;
+    }
+
+    .compare-ellipse-image,
+    .feature-ellipse-left,
+    .feature-ellipse-right {
+        width: 100%;
+    }
+
+
+
+    /* 
+    ----------------
+    pricing-area
+    ----------------
+    */
+
+    .pricing-ellipse-image {
+        width: 100%;
+        top: -2%;
+    }
+
+    .report-ellipse {
+        width: 100%;
+    }
+
+    .pricing-card-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
+
+
+    /* 
+    -------------------
+    testimonials-area
+    -------------------
+    */
+
+    .testimonial-right-ellipse,
+    .testimonial-left-ellipse {
+        width: 100%;
+    }
+
+
+
+
+    /* 
+    -------------------
+    personal-info-area
+    -------------------
+    */
+
+    .personal-info-box a {
+        font-size: 15px;
+        padding: 14px 18px;
+    }
+
+    .personal-info-box p {
+        margin: 12px 0 30px;
+    }
+
+
+
+    /* 
+    -------------------
+    faq-area
+    -------------------
+    */
+
+    .faq-ellipse-left,
+    .faq-ellipse-right {
+        width: 100%;
+    }
+
+    .accordion_head h3 {
+        font-size: 14px;
+        width: 90%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 12px 16px;
+    }
+
+    .accordion_body {
+        padding: 0 16px 16px;
+    }
+
+    .accordion_body p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+
+
+
+    /* 
+    ----------------------
+    precheck-scan-box.html
+    ----------------------
+    */
+
+    .precheck-scan-body .banner-texture-image,
+    .precheck-scan-body .banner-ellipse-image {
+        width: 100%;
+    }
+
+    .precheck-scan-body .banner-ellipse-image {
+        top: 25%;
+        bottom: initial;
+    }
+
+    .precheck-scan-body .banner-texture-image {
+        top: 25%;
+        bottom: initial;
+    }
+
+
+	
+}
+
+
+
+@media screen and (max-width: 575px) {
+
+
+    /* 
+    ----------------
+    banner-area
+    ----------------
+    */
+
+    .banner-content form input {
+        width: 100%;
+        margin: 0 0 10px !important;
+        padding: 12px 18px;
+    }
+
+    .banner-ellipse-image {
+        bottom: -12%;
+    }
+
+    /* 
+    -----------------
+    check-leaks-area
+    -----------------
+    */
+
+    .check-leaks-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 35px;
+    }
+    
+    
+
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+    
+
+
+}
+
