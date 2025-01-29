@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Identity</title>
+
+    <link rel="stylesheet" href="assets/style.css">
+
+
+</head>
+<body>
+    <h2>Payment Successful! Now Verify Your Details</h2>
+    
+    <form id="verificationForm">
+        <label for="userInput">Enter Email, Username, or Phone:</label>
+        <input type="text" id="userInput" name="userInput" required>
+        <button type="submit">Perform In-Depth Analysis</button>
+    </form>
+
+    <div id="result"></div> <!-- Placeholder for API results -->
+
+    <script>
+        document.getElementById("verificationForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const userInput = document.getElementById("userInput").value;
+            const resultDiv = document.getElementById("result");
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/check?input=${encodeURIComponent(userInput)}`);
+                const data = await response.json();
+                console.log("API Response:", data);
+
+                if (data.success) {
+                    resultDiv.innerHTML = `<p>Analysis complete! Found ${data.found} sources.</p>`;
+                } else {
+                    resultDiv.innerHTML = `<p>No leaks found or an error occurred.</p>`;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                resultDiv.innerHTML = `<p>Something went wrong. Please try again.</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
@@ -9,12 +10,20 @@ const app = express();
 const PORT = 5000;
 
 app.use(cors());
-app.use(express.json()); // Enable JSON parsing
+app.use(express.json());
 
-// 🔹 Check API for leaks (Existing Functionality)
+// ✅ Corectăm servirea fișierelor statice
+app.use(express.static(path.join(__dirname, "public/frontend")));
+
+// ✅ Asigurăm că `verify.html` se servește corect
+app.get("/verify.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/frontend/verify.html"));
+});
+
+// ✅ API Check pentru leaks
 app.get("/api/check", async (req, res) => {
-    const userInput = req.query.input; // Get email from query params
-    console.log("Request received:", req.query.input);
+    const userInput = req.query.input;
+    console.log("Request received:", userInput);
 
     if (!userInput) {
         return res.status(400).json({ error: "Email is missing!" });
@@ -22,20 +31,20 @@ app.get("/api/check", async (req, res) => {
 
     try {
         const response = await axios.get(`https://leakcheck.io/api/public?check=${userInput}`);
-        res.json(response.data); // Return API response to frontend
+        res.json(response.data);
     } catch (error) {
         console.error("Error retrieving data:", error.message);
         res.status(500).json({ error: "Error retrieving data from API." });
     }
 });
 
-//  Stripe Payment Plans
+// 🔹 Stripe Payment Plans
 const plans = new Map([
     ["in_depth", { priceId: "price_1QmEXpPkpSyeTn4escHtLFf4", name: "In-Depth One-Time Report" }],
     ["continuous", { priceId: "price_1QmEetPkpSyeTn4exCwlZ0SA", name: "Continuous Protection (12 Months)" }],
 ]);
 
-//  Create Stripe Checkout Session
+// 🔹 Create Stripe Checkout Session
 app.post("/create-checkout-session", async (req, res) => {
     try {
         const { planId } = req.body;
@@ -43,7 +52,7 @@ app.post("/create-checkout-session", async (req, res) => {
             return res.status(400).json({ error: "Invalid plan selected" });
         }
 
-        // Modify Success URL to Redirect to Verification Page
+        // ✅ Corectăm redirecționarea
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             line_items: [
@@ -53,7 +62,7 @@ app.post("/create-checkout-session", async (req, res) => {
                 },
             ],
             mode: planId === "continuous" ? "subscription" : "payment",
-            success_url: `${process.env.CLIENT_URL}/verify.html?session_id={CHECKOUT_SESSION_ID}`, // ✅ Redirects to verification page
+            success_url: `${process.env.CLIENT_URL}/verify.html?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.CLIENT_URL}/cancel.html`,
         });
 
@@ -64,7 +73,7 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 });
 
-//  API to Verify User Input After Payment
+// 🔹 API to Verify User Input After Payment
 app.post("/api/in-depth-analysis", async (req, res) => {
     const { sessionId, input } = req.body;
 
@@ -73,7 +82,7 @@ app.post("/api/in-depth-analysis", async (req, res) => {
     }
 
     try {
-        //  Validate Payment Session
+        // 🔹 Validate Payment Session
         const session = await stripe.checkout.sessions.retrieve(sessionId);
         if (session.payment_status !== "paid") {
             return res.status(403).json({ success: false, error: "Payment not completed." });
@@ -83,13 +92,13 @@ app.post("/api/in-depth-analysis", async (req, res) => {
         return res.status(500).json({ success: false, error: "Invalid session ID." });
     }
 
-    //  Perform In-Depth Analysis (Mock Response for Now)
+    // 🔹 Perform In-Depth Analysis (Mock Response for Now)
     console.log(`Performing in-depth analysis for: ${input}`);
 
     res.json({ success: true, message: "In-depth analysis started!" });
 });
 
-//  Start the Server
+// 🔹 Start the Server
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`✅ Server running at http://localhost:${PORT}`);
 });

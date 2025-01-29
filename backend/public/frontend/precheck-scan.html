@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta - Setup -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="">
+    <meta name="decription" content="">
+
+    <!-- Title -->
+    <title>LeakNix - Precheck Scan</title>
+
+    <!-- Fav - icon -->
+    <link rel="shortcut icon" href="assets/images/icons/fav.png" type="image/x-icon">
+
+    <!-- FontAwesome - Link -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-thin.css">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+
+    <!-- Owl - Carousel - Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.min.css">
+
+    <!-- Bootstrap - Link -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+
+    <!-- Main - Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="assets/style.css" />
+
+    <!-- Responsive -->
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" />
+
+</head>
+
+<body class="precheck-scan-body">
+    <img class="banner-texture-image" src="assets/images/texture.png" alt="image">
+    <img class="banner-ellipse-image" src="assets/images/banner-ellipse.png" alt="image">
+
+    <!-- 
+    ----------------------------
+    Main - Area Start Here
+    ----------------------------
+    -->
+
+    <main class="main-area">
+        <article>
+
+            <section class="header-banner-bg position-relative">
+                
+
+                <!-- header-area start here -->
+                <header class="header-area header-area2">
+                    <div class="container">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="header-left-side d-flex align-items-center">
+                                <div class="header-logo">
+                                    <a href="index.html" class="logo-design">LeakNix</a>
+                                </div>
+                            </div>
+                            <div class="check-btn-div">
+                                <a href="#" class="check-btn">Check now</a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="precheck-area">
+                    <div class="precheck-scan-box text-center">
+                        <img class="precheck-ellipse" src="assets/images/precheck-ellipse.png" alt="image">
+                        <img src="assets/images/icons/Illustration.svg" alt="icon">
+                        <h3 class="lg-text text-white mb-2 fw-medium">Light precheck scan in progress</h3>
+                        <p class="p-sm">Your email is being scanned currently</p>
+                    </div>
+                </div>
+
+            </section>
+
+        </article>
+    </main>
+
+
+
+
+
+
+    <!-- Scroll to Back Button -->
+    <button class="scrollToTopBtn"><i class="fa-light fa-angles-up"></i></button>
+
+
+    <!-- Bootstrap - Js -->
+    <script src="assets/js/bootstrap.js"></script>
+
+    <!-- Jquery - Js -->
+    <script src="assets/js/jquery.js"></script>
+
+    <!-- Scripts - Js -->
+    <script src="assets/js/scripts.js"></script>
+
+    <!-- Wow - min - Js -->
+    <script src="assets/js/wow.min.js"></script>
+
+    <!-- Owl - Carousel - Js -->
+    <script src="assets/js/owl.carousel.min.js"></script>
+
+
+    <script>
+        //At the document ready event
+        $(function () {
+            new WOW().init();
+        });
+
+        //also at the window load event
+        $(window).on('load', function () {
+            new WOW().init();
+        });
+    </script>
+
+<script>
+    // Function to get the email from query parameters
+    function getQueryParam(param) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(param);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const email = getQueryParam("email"); // Extract email from the URL
+        if (!email) {
+            alert("No email provided. Redirecting to homepage...");
+            window.location.href = "index.html"; // Redirect back if no email is provided
+            return;
+        }
+        console.log("Email being sent:", email);
+
+
+        // Simulate loading animation for 10 seconds
+        setTimeout(() => {
+            // Redirect to result.html with the email query parameter
+            window.location.href = `result.html?email=${encodeURIComponent(email)}`;
+        }, 10000); // Wait 10 seconds
+    });
+</script>
+
+
+
+
+
+</body>
+
+</html>
