@@ -347,61 +347,78 @@
         });
     </script>
 
+
 <script>
-    // Function to extract query parameters
     function getQueryParam(param) {
         const params = new URLSearchParams(window.location.search);
         return params.get(param);
     }
 
     document.addEventListener("DOMContentLoaded", async () => {
-        const email = getQueryParam("email"); // Get email from query params
-        const resultsDiv = document.querySelector(".pricing-title"); // Target the results section
+        const email = getQueryParam("email");
+        const resultsDiv = document.querySelector(".pricing-title");
 
         if (!email) {
-            resultsDiv.innerHTML = "<h2>No email provided. Redirecting to homepage...</h2>";
-            setTimeout(() => (window.location.href = "index.html"), 3000); // Redirect after 3 seconds
+            resultsDiv.innerHTML = "<h2>No email provided. Redirecting...</h2>";
+            setTimeout(() => (window.location.href = "index.html"), 3000);
             return;
         }
 
-        // Show loading message
-        resultsDiv.innerHTML = "<h2>Fetching results...</h2>";
+        resultsDiv.innerHTML = "<h2>Checking for breaches...</h2>";
 
         try {
-            // Call the backend API to fetch the results
             const response = await fetch(`http://localhost:5000/api/check?input=${email}`);
             const data = await response.json();
-            console.log("Response from backend:", data); // Log pentru depanare
+            console.log("Response:", data);
 
-            if (data.success && data.found > 0) {
-                console.log("Sources found:", data.sources); // Log surse găsite
+            if (!data.success || !data.result) {
+                resultsDiv.innerHTML = "<h2>Error: Invalid response from server.</h2>";
+                return;
+            }
 
-                // If breaches are found, display them
-                const breaches = data.sources
-                    .map(source => `<li>${source.name} - ${source.date || "Unknown Date"}</li>`)
+            if (data.found > 0) {
+                const breaches = data.result
+                    .map(breach => `
+                        <div class="breach-card">
+                            <h3> ${breach.source.name || "Unknown"}</h3>
+                            <p><strong> Breach Date:</strong> ${breach.source.breach_date || "Unknown"}</p>
+                            <p><strong> Exposed Fields:</strong> ${breach.fields.join(", ")}</p>
+                            <p><strong> Password:</strong> <span class="password">${breach.password}</span> 
+                        
+                            </p>
+                        </div>
+                    `)
                     .join("");
+
                 resultsDiv.innerHTML = `
-                    <h2 class="wow fadeInUp mb-2">Breaches Found</h2>
-                    <p class="wow fadeInUp">Email <strong>${email}</strong> has been compromised in the following breaches:</p>
-                    <ul>${breaches}</ul>
-                    <p class="warning">Take action to secure your accounts.</p>
+                    <h2 style="color: red;">⚠️ Breaches Found!</h2>
+                    <p>Email <strong>${email}</strong> was found in <strong>${data.found}</strong> data breaches:</p>
+                    <div class="breach-container">${breaches}</div>
+                    <p style="color: yellow;">⚠️ Change your passwords immediately!</p>
                 `;
+
+                // Funcționalitate pentru a ascunde/arata parolele
+                document.querySelectorAll(".toggle-password").forEach(button => {
+                    button.addEventListener("click", function () {
+                        const passwordSpan = this.previousElementSibling;
+                        passwordSpan.textContent = passwordSpan.textContent.includes("*") 
+                            ? this.dataset.password 
+                            : "*".repeat(passwordSpan.textContent.length);
+                    });
+                });
             } else {
-                // No breaches detected
                 resultsDiv.innerHTML = `
-                    <h2 class="wow fadeInUp mb-2">Congratulations, no leaks detected, you are secure!</h2>
-                    <p class="wow fadeInUp">Email <strong>${email}</strong> has been scanned and you’re secure. Click one of the pricing options to continue and get your report.</p>
+                    <h2 style="color: green;">✅ No Leaks Detected!</h2>
+                    <p>Email <strong>${email}</strong> is safe. No breaches were found.</p>
                 `;
             }
         } catch (error) {
-            // Handle errors
-            resultsDiv.innerHTML = "<h2>An error occurred while fetching results. Please try again later.</h2>";
+            resultsDiv.innerHTML = "<h2>An error occurred while fetching results.</h2>";
             console.error("Error:", error);
         }
     });
-
-    
 </script>
+
 
 <script src="https://js.stripe.com/v3/"></script>
 <script src="assets/js/checkout.js"></script>

@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verify Your Identity</title>
-
     <link rel="stylesheet" href="assets/style.css">
-
-
 </head>
 <body>
     <h2>Payment Successful! Now Verify Your Details</h2>
@@ -27,7 +24,15 @@
             const resultDiv = document.getElementById("result");
             
             try {
-                const response = await fetch(`http://localhost:5000/api/check?input=${encodeURIComponent(userInput)}`);
+                // Trimitem cererea la backend, care va apela API-ul LeakCheck 
+                const response = await fetch("http://localhost:5000/api/check-email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ email: userInput }) 
+                });
+
                 const data = await response.json();
                 console.log("API Response:", data);
 

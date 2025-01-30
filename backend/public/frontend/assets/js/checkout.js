@@ -1,4 +1,4 @@
-const stripe = Stripe("pk_test_51QmAvcPkpSyeTn4eO2Ckv1gUbonkf4riOrDWqllTbMvHgzuZZ2NeJ7Xjy21AIK2mTCS8tOz4AAOAeuHKqsJ2PFhh00X8CGpij4"); // Replace with your actual Stripe publishable key
+const stripe = Stripe("pk_test_51QmAvcPkpSyeTn4eO2Ckv1gUbonkf4riOrDWqllTbMvHgzuZZ2NeJ7Xjy21AIK2mTCS8tOz4AAOAeuHKqsJ2PFhh00X8CGpij4"); 
 
 async function checkout(planId) {
     try {
